@@ -4,7 +4,9 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test:ai": "node tests/testAI.js",
+    "setup": "node setup.js"
   },
   "type": "module",
   "keywords": [],
@@ -12,6 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google/genai": "^1.11.0",
     "@upstash/ratelimit": "^2.0.5",
     "@upstash/redis": "^1.34.9",
     "cors": "^2.8.5",
