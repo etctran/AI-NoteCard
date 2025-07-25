@@ -1,6 +1,7 @@
 # NoteCard
 
 A note-taking application with AI-powered writing assistance.
+https://notecard-app.vercel.app/
 
 ## Features
 
