@@ -50,9 +50,10 @@ cd frontend && npm run dev
 
 The app is deployed on Vercel at: [https://notecard-app.vercel.app/](https://notecard-app.vercel.app/)
 
-## API Endpoints
+## Screenshots
 
-- `GET/POST/PUT/DELETE /api/notes` - Note CRUD operations
-- `POST /api/ai/grammar-check` - Grammar and spelling check
-- `POST /api/ai/tone-analysis` - Text tone analysis  
-- `POST /api/ai/completions` - Generate text completions
+<img width="1907" height="958" alt="8175cc92d9c73779a59cf04e9a2c9a47" src="https://github.com/user-attachments/assets/3e667ba0-d639-4cf8-9cfd-93584405be12" />
+<img width="1921" height="964" alt="edbe02cf7cd8718fb98decbe7cb2f63d" src="https://github.com/user-attachments/assets/5e5b8105-0098-4baa-8d8a-2f2753703e63" />
+<img width="1914" height="951" alt="2d9917ccea8c8e89f8be4caf42c2ee9a" src="https://github.com/user-attachments/assets/b3f0c660-1640-425a-bf9d-cb3406c1c2a6" />
+<img width="1830" height="932" alt="304ac639e17eb072f2e36d040fd5c978" src="https://github.com/user-attachments/assets/ba764dc3-a851-4b49-ab2a-c007a9546839" />
+
