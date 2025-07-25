@@ -22,21 +22,33 @@ A note-taking application with AI-powered writing assistance.
    MONGODB_URI=your_mongodb_connection_string
    GEMINI_API_KEY=your_gemini_api_key
    ```
-3. Install and run:
+3. Install dependencies:
    ```bash
-   npm run build
-   npm start
+   npm install
    ```
 
 ## Development
 
+### Recommended: Use Vercel Dev (Full-Stack)
 ```bash
-# Backend
+vercel dev
+```
+This runs both frontend and backend together, mimicking the production environment.
+
+### Alternative: Separate Development Servers
+```bash
+# Terminal 1: Backend
 cd backend && npm run dev
 
-# Frontend  
+# Terminal 2: Frontend  
 cd frontend && npm run dev
 ```
+
+**Note:** If running separately, the frontend will be available at `http://localhost:5173` and backend at `http://localhost:5001`.
+
+## Production
+
+The app is deployed on Vercel at: [https://notecard-app.vercel.app/](https://notecard-app.vercel.app/)
 
 ## API Endpoints
 
