@@ -1,7 +1,7 @@
 {
   "name": "noteboard",
   "version": "1.0.0",
-  "description": "\"# Note-App\" \r # NoteBoard",
+  "description": "A note-taking application with AI-powered writing assistance",
   "main": "index.js",
   "scripts": {
     "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
