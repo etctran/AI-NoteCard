@@ -4,11 +4,14 @@ import { Link, useNavigate, useParams } from "react-router";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
 import { ArrowLeftIcon, LoaderIcon, Trash2Icon } from "lucide-react";
+import SmartTextEditor from "../components/SmartTextEditor";
+import AIAssistantPanel from "../components/AIAssistantPanel";
 
 const NoteDetailPage = () => {
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [aiMessage, setAiMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -63,6 +66,20 @@ const NoteDetailPage = () => {
     }
   };
 
+  const handleAIAssist = (message) => {
+    setAiMessage(message);
+    if (message.includes('Failed')) {
+      toast.error(message);
+    } else {
+      toast.success(message);
+    }
+  };
+
+  const handleTextCorrection = (correctedText) => {
+    setNote({ ...note, content: correctedText });
+    toast.success('Text corrections applied!');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-base-200 flex items-center justify-center">
@@ -74,7 +91,7 @@ const NoteDetailPage = () => {
   return (
     <div className="min-h-screen bg-base-200">
       <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <Link to="/" className="btn btn-ghost">
               <ArrowLeftIcon className="h-5 w-5" />
@@ -89,44 +106,63 @@ const NoteDetailPage = () => {
             </button>
           </div>
 
-          <div className="card bg-base-100">
-            <div className="card-body">
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Title</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Note title"
-                  className="input input-bordered"
-                  value={note.title}
-                  onChange={(e) => setNote({ ...note, title: e.target.value })}
-                />
-              </div>
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
+            {/* Main Editor Column */}
+            <div className="xl:col-span-3">
+              <div className="card bg-base-100 shadow-xl">
+                <div className="card-body">
+                  <div className="form-control mb-6">
+                    <label className="label">
+                      <span className="label-text font-medium">Title</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Note title"
+                      className="input input-bordered input-lg w-full"
+                      value={note.title}
+                      onChange={(e) => setNote({ ...note, title: e.target.value })}
+                    />
+                  </div>
 
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Content</span>
-                </label>
-                <textarea
-                  placeholder="Write your note here..."
-                  className="textarea textarea-bordered h-32"
-                  value={note.content}
-                  onChange={(e) =>
-                    setNote({ ...note, content: e.target.value })
-                  }
-                />
-              </div>
+                  <div className="form-control mb-6">
+                    <label className="label">
+                      <span className="label-text font-medium">Content</span>
+                    </label>
+                    <SmartTextEditor
+                      value={note.content}
+                      onChange={(content) => setNote({ ...note, content })}
+                      placeholder="Write your note here... Press Tab for AI completions"
+                      className="textarea textarea-bordered min-h-96 resize-y text-base leading-relaxed w-full max-w-none"
+                      onAIAssist={handleAIAssist}
+                    />
+                  </div>
 
-              <div className="card-actions justify-end">
-                <button
-                  className="btn btn-primary"
-                  disabled={saving}
-                  onClick={handleSave}
-                >
-                  {saving ? "Saving..." : "Save Changes"}
-                </button>
+                  <div className="card-actions justify-end pt-4">
+                    <button
+                      className="btn btn-primary btn-lg px-8"
+                      disabled={saving}
+                      onClick={handleSave}
+                    >
+                      {saving ? (
+                        <>
+                          <span className="loading loading-spinner loading-sm"></span>
+                          Saving...
+                        </>
+                      ) : (
+                        "Save Changes"
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            {/* AI Assistant Column */}
+            <div className="xl:col-span-1">
+              <AIAssistantPanel 
+                text={note.content}
+                onTextCorrection={handleTextCorrection}
+              />
             </div>
           </div>
         </div>
