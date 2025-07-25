@@ -1,9 +1,8 @@
 import axios from "axios";
 
-// in production, make this dynamic
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001/api" : "/api";
+// Use a relative path for the API to work in both development and production
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: "/api",
 });
 
 export default api;

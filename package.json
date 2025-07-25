@@ -2,10 +2,21 @@
   "name": "noteboard",
   "version": "1.0.0",
   "description": "A note-taking application with AI-powered writing assistance",
-  "main": "index.js",
+  "main": "api/index.js",
+  "type": "module",
   "scripts": {
     "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "npm run start --prefix backend"
+    "start": "npm run start --prefix backend",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@google/genai": "^1.11.0",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.34.9",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^4.18.2",
+    "mongoose": "^8.14.3"
   },
   "repository": {
     "type": "git",
