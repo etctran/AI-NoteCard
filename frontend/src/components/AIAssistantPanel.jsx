@@ -258,9 +258,7 @@ const AIAssistantPanel = ({ text, onTextCorrection }) => {
           </div>
         )}
 
-        <div className="text-xs text-base-content/60">
-          AI analysis powered by Google Gemini Flash 2.0
-        </div>
+
       </div>
     </div>
   );
